@@ -1,19 +1,73 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="styles.css">
-        <title>Teenage</title>
-    </head>
-    <body>
-        <ul>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Teenage</title>
+    <script type="importmap">
+            {
+              "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+              }
+            }
+          </script>
+    <ul id="menu">
+        <div>
+            <h1>Teenage IA</h1>
+        </div>
+        <div>
             <li><a href="index.html">Início</a></li>
             <li><a href="relatos.html">Relatos</a></li>
             <li><a href="ia.html">IA</a></li>
             <li><a href="sobre.html">Sobre Nós</a></li>
-          </ul>
-          <h2 id="inicio"></h2>
-        <h1>Teenage IA</2h1>
-        
+        </div>
+    </ul>
+</head>
+
+<body>
+
+    <form>
+        <label>Prompt</label>
+        <br>
+        <textarea cols="40" rows="20" name="prompt" id="prompt"></textarea>
+        <br>
+        <br>
+        <input type="button" value="Enviar" />
+        <br>
+        <br>
+        <label>Resposta</label>
+        <br>
+        <textarea cols="40" rows="20" name="prompt" id="resposta"></textarea>
+    </form>
+    <html>
+
+    <!-- ... Your HTML and CSS -->
+    <!-- Import @google/generative-ai, as shown above. -->
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        // Fetch your API_KEY
+        const API_KEY = "AIzaSyAZiRcKQnUxl8KmDmux1KUreqnjRD_10Ew";
+
+        // Access your API key (see "Set up your API key" above)
+        const genAI = new GoogleGenerativeAI(API_KEY);
+
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        document.querySelector("input[type=button]").addEventListener("click", run);
+
+        async function run() {
+            const prompt = "Você é uma espécie de orientador, no qual conversa, dá conselhos e encaminha para um responsável medico psicólogo profissional caso a conversa tome um rumo perigoso. Caso aconteça alguma cituacao grave ou fale algo grave. voce deve cortar o assunto imediatamente e solicitar a pessoa a ligar para o cvv ou algo mais critico. Voce nao pode dar respostas com menos de 15 palavras. Caso aconteca, reenvie a mensagem. Sendo isso, responda o próximo prompt com esses quesitos: " + document.getElementById("prompt").value;
+
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = response.text();
+            document.getElementById("resposta").value = text;
+            console.log(text);
+        }
+    </script>
 </body>
+
 </html>
