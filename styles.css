@@ -1,7 +1,10 @@
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: 'sans-serif';
-  padding: 4px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 * {
@@ -21,12 +24,13 @@ li {
 }
 
 li a {
-  display: block;
   color: rgb(0, 0, 0);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 20px;
+  display: inline;
+  margin: 0 10px;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -36,7 +40,7 @@ li a:hover {
 
 body {
   text-align: justify;
-  background: linear-gradient(to right, #b91c5d, #2459bb);
+  background: linear-gradient(to right, #004aad, #cb6ce6);
   /* Gradiente do vermelho para o laranja */
 }
 
@@ -87,4 +91,81 @@ form {
   margin-right: 30px;
   /* Espaço à direita */
   font-size: 25px;
+}
+
+
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 20px;
+}
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  max-width: 600px;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+  max-width: 600px;
+}
+
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7e47c5;
+  color: #fff;
+  cursor: pointer;
+  max-width: 600px;
+}
+
+button:hover {
+  background-color: #a15ec9;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 80%;
+}
+
+.user-message {
+  background-color: #e1ffc7;
+  align-self: flex-end;
+}
+
+.ai-message {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  height: calc(50vh - 80px); /* Ajuste a altura para considerar o cabeçalho */
+ 
 }
