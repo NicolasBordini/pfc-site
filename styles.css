@@ -4,11 +4,9 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-}
-
-* {
-  box-sizing: border-box;
+  min-height: 100vh;
+  background: linear-gradient(to right, #13072e, #3f2182); /* Novo gradiente */
+  color: #000000;
 }
 
 ul {
@@ -16,7 +14,8 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  ;
+  background-color: rgba(255, 255, 255, 0.9); /* Fundo transparente */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 li {
@@ -24,93 +23,93 @@ li {
 }
 
 li a {
-  color: rgb(0, 0, 0);
+  color: #333;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 20px;
   text-decoration: none;
-  font-size: 20px;
-  display: inline;
-  margin: 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
-  background-color: #f5f5f57e;
-}
-
-body {
-  text-align: justify;
-  background: linear-gradient(to right, #004aad, #cb6ce6);
-  /* Gradiente do vermelho para o laranja */
-}
-
-h1 {
-  text-align: center;
-}
-
-form {
-  font-size: small;
-  text-align: justify;
+  background-color: #ddd;
 }
 
 #menu {
   position: sticky;
-  top: 0px;
-  z-index: 1;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #cac2cc75;
-  padding: 3px;
-  border-radius: 14px;
+  padding: 10px 20px;
+  background-color: #ffffffcc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #menu h1 {
-  font-size: 25px;
-  color: #000000;
-  margin: 10px;
+  font-size: 24px;
+  color: #333;
+  margin: 0;
 }
 
 .spaco-content {
   width: 90%;
-  background-color: #cac2cc50;
-  margin: 2rem 0;
-  border-radius: 14px;
+  background-color: #ffffffcc;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .spaco-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  flex-direction: column;
 }
 
 .espaco {
-  margin-left: 30px;
-  /* Espaço à esquerda */
-  margin-right: 30px;
-  /* Espaço à direita */
-  font-size: 25px;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: justify;
+  color: #555;
 }
 
-
+/* Centralizando o chatbot na página e garantindo que não sobreponha o menu */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  flex: 1;
+  padding: 20px;
+  margin-top: 80px; /* Espaço suficiente para o menu */
+}
 
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  margin: 20px;
+  width: 100%;
+  max-width: 600px; /* Limite opcional de largura */
+  height: auto; /* Altura automática */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .chat-box {
   flex: 1;
   overflow-y: auto;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 20px;
   background-color: #f9f9f9;
-  margin-bottom: 10px;
-  max-width: 600px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .input-area {
@@ -120,39 +119,38 @@ form {
 
 textarea {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 10px;
   box-sizing: border-box;
   resize: none;
-  max-width: 600px;
+  margin-bottom: 10px;
 }
 
-
 button {
-  margin-top: 10px;
-  padding: 10px;
+  padding: 15px;
   border: none;
-  border-radius: 5px;
-  background-color: #7e47c5;
-  color: #fff;
+  border-radius: 10px;
+  background-color: #522699;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
-  max-width: 600px;
 }
 
 button:hover {
-  background-color: #a15ec9;
+  background-color: #522699c0;
 }
 
 .message {
   margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 15px;
+  border-radius: 10px;
   max-width: 80%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .user-message {
-  background-color: #e1ffc7;
+  background-color: #d4f1f4;
   align-self: flex-end;
 }
 
@@ -161,11 +159,3 @@ button:hover {
   align-self: flex-start;
 }
 
-main{
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centraliza horizontalmente */
-  justify-content: center; /* Centraliza verticalmente */
-  height: calc(50vh - 80px); /* Ajuste a altura para considerar o cabeçalho */
- 
-}
