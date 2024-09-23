@@ -1,160 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Teenage</title>
-    <style>
-        /* Estilos para o contêiner principal da navbar */
-        .navbar-container {
-            display: flex;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            margin: 0 20px;
-            padding: 10px 0;
-        }
-
-        /* Estilos para a navbar */
-        #menu {
-            display: flex;
-            align-items: center;
-            padding: 0;
-            width: 100%;
-            max-width: 1256px;
-        }
-
-        /* Estilos para o logotipo e texto */
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-container img {
-            width: 100px;
-            height: auto;
-            margin-right: 5px;
-        }
-
-        /* Estilos para os itens da navbar */
-        #menu li {
-            list-style-type: none;
-            display: inline;
-            margin-right: 15px;
-        }
-
-        /* Adiciona um espaçamento ao conteúdo para não ficar atrás da navbar fixa */
-        body {
-            margin-top: 70px;
-        }
-
-        /* Estilo para a seção de autores */
-        .authors-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin: 40px 20px;
-        }
-
-        .author {
-            text-align: center;
-            width: 30%;
-            margin-bottom: 40px;
-        }
-
-        .author img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .author h3 {
-            margin-top: 10px;
-        }
-
-        .author p {
-            font-size: 14px;
-            color: #555;
-        }
-    </style>
+    <ul id="menu">
+        <div>
+            <h1>Criadores Teenage</h1>
+        </div>
+        <div>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="relatos.html">Relatos</a></li>
+            <li><a href="ia.html">IA</a></li>
+            <li><a href="sobre.html">Sobre Nós</a></li>
+        </div>
+    </ul>
 </head>
+
 <body>
-    <!-- Navbar -->
-    <div class="navbar-container">
-        <ul id="menu">
-            <div class="logo-container">
-                <img src="teenagelogo.png" alt="Teenage Emotions Logo">
-                <h1>Teenage Emotions</h1>
-            </div>
-            <div>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="relatos.html">Relatos</a></li>
-                <li><a href="ia.html">IA</a></li>
-                <li><a href="sobre.html">Sobre Nós</a></li>
-            </div>
-        </ul>
-    </div>
 
-    <!-- Seção de Autores -->
-    <div class="authors-section">
-        <!-- Anna Julia Lopes -->
-        <div class="author">
-            <a href="https://www.instagram.com/anna.julia_015?igsh=MTg2dmZ2NG95Z3Z4dg==">
-                <img src="foto-anna.jpg" alt="Foto de Anna Julia Lopes">
-                <h3>Anna Julia Lopes</h3>
-            </a>
-            <p>Anna Julia Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type </p>
-        </div>
 
-        <!-- Nicolas Bordini -->
-        <div class="author">
-            <a href="https://www.instagram.com/nicolas.bordinii?igsh=MXdxOGx3NThmeTN2bA==">
-                <img src="foto-nicolas.jpg" alt="Foto de Nicolas Bordini">
-                <h3>Nicolas Bordini</h3>
-            </a>
-            <p>Nicolas Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-        </div>
+    <a href="https://www.instagram.com/anna.julia_015?igsh=MTg2dmZ2NG95Z3Z4dg==">
+        <h3>Anna Julia Lopes</h3>
+    </a>
+    <a href="https://www.instagram.com/nicolas.bordinii?igsh=MXdxOGx3NThmeTN2bA==">
+        <h3>Nicolas Bordini</h3>
+    </a>
+    <a href="https://www.instagram.com/nikoli_azevedo?igsh=MW4xM29qY2s0emZqaQ==">
+        <h3>Nikoli Azevedo</h3>
+    </a>
 
-        <!-- Nikoli Azevedo -->
-        <div class="author">
-            <a href="https://www.instagram.com/nikoli_azevedo?igsh=MW4xM29qY2s0emZqaQ==">
-                <img src="foto-nikoli.jpg" alt="Foto de Nikoli Azevedo">
-                <h3>Nikoli Azevedo</h3>
-            </a>
-            <p>NikoliLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-        </div>
 
-        <!-- Michelli Galli -->
-        <div class="author">
-            <a href="https://www.instagram.com/novoautor1">
-                <img src="foto-novo1.jpg" alt="Foto do Novo Autor 1">
-                <h3>Michelli Galli </h3>
-            </a>
-            <p> Michelli Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-        </div>
-
-        <!-- Amanda Keler -->
-        <div class="author">
-            <a href="https://www.instagram.com/novoautor2">
-                <img src="foto-novo2.jpg" alt="Foto do Novo Autor 2">
-                <h3>Amanda Keler</h3>
-            </a>
-            <p>Amanda Keler Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-        </div>
-
-        <!-- Vagner Simoes -->
-        <div class="author">
-            <a href="https://www.instagram.com/novoautor3">
-                <img src="foto-novo3.jpg" alt="Foto do Novo Autor 3">
-                <h3>Vagner Simoes</h3>
-            </a>
-            <p>Vagner Simoes Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-        </div>
-    </div>
 </body>
+
 </html>
