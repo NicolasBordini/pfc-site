@@ -6,30 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Teenage IA</title>
+
+    <!-- Importação para Google Generative AI -->
     <script type="importmap">
         {
             "imports": {
                 "@google/generative-ai": "https://esm.run/@google/generative-ai"
             }
         }
-    </script> 
-  
-    <ul id="menu">
-        <div>
-          <h1>Teenage IA</h1>
-        </div>
-        <div>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="relatos.html">Relatos</a></li>
-          <li><a href="ia.html">IA</a></li>
-          <li><a href="sobre.html">Sobre Nós</a></li>
-        </div>
-      </ul>
-      
+    </script>
 
+    <style>
+        /* Estilos para o contêiner principal da navbar */
+        .navbar-container {
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            margin: 0 20px;
+            padding: 10px 0;
+        }
+
+        /* Estilos para a navbar */
+        #menu {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            width: 100%;
+            max-width: 1256px;
+        }
+
+        /* Estilos para o logotipo e texto */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: auto;
+            margin-right: 5px;
+        }
+
+        /* Estilos para os itens da navbar */
+        #menu li {
+            list-style-type: none;
+            display: inline;
+            margin-right: 15px;
+        }
+
+        /* Espaço para evitar sobreposição da navbar */
+        .spaco-container {
+            margin-top: 80px;
+        }
+
+        /* Ajustes do layout do chatbot */
+        .chat-container {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+            background-color: #f4f4f9;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+        }
+
+        .chat-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 400px;
+            overflow-y: auto;
+            background-color: white;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        textarea {
+            flex-grow: 1;
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            resize: none;
+            box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 10px 30px;
+            background-color: #663399;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #5a2e88;
+        }
+
+        /* Estilos para as mensagens */
+        .message {
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 60%;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            clear: both;
+        }
+
+        /* Mensagens do usuário à direita */
+        .user-message {
+            background-color: #dcd6ff;
+            text-align: right;
+            float: right;
+        }
+
+        /* Mensagens da IA à esquerda */
+        .ai-message {
+            background-color: #f1f1f1;
+            text-align: left;
+            float: left;
+        }
+
+        /* Faz as mensagens se alinharem corretamente e evita que quebrem o layout */
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Navbar -->
+    <div class="navbar-container">
+        <ul id="menu">
+            <div class="logo-container">
+                <img src="teenagelogo.png" alt="Teenage Emotions Logo">
+                <h1>Teenage Emotions</h1>
+            </div>
+            <div>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="relatos.html">Relatos</a></li>
+                <li><a href="ia.html">IA</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+            </div>
+        </ul>
+    </div>
+
+    <!-- Espaço abaixo da navbar fixa -->
+    <div class="spaco-container"></div>
+
+    <!-- Conteúdo do chatbot -->
     <main>
         <div class="chat-container">
             <div id="chat-box" class="chat-box"></div>
@@ -40,13 +181,41 @@
         </div>
     </main>
 
-     <script type="module">
+    <script>
+        function enviarMensagem() {
+            const mensagem = document.getElementById('prompt').value;
+
+            // Crie um objeto com os dados a serem enviados
+            const dados = {
+                usuario: 'Usuário', // Substitua por um nome de usuário dinâmico se precisar
+                mensagem: mensagem
+            };
+
+            // Utilize o fetch para enviar a requisição POST
+            fetch('/historico', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Resposta do servidor:', data);
+
+                    // Aqui você pode adicionar um feedback ao usuário, como uma mensagem de sucesso ou erro
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar mensagem:', error);
+                });
+        }
+    </script>
+
+    <!-- Script do chatbot -->
+    <script type="module">
         import { GoogleGenerativeAI } from "@google/generative-ai";
 
-        // Fetch your API_KEY
         const API_KEY = "AIzaSyAZiRcKQnUxl8KmDmux1KUreqnjRD_10Ew";
-
-        // Access your API key (see "Set up your API key" above)
         const genAI = new GoogleGenerativeAI(API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -59,21 +228,23 @@
             const response = await result.response;
             const text = await response.text();
 
-            // Append message to chat-box
             const chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML += `<div class="message user-message">${document.getElementById("prompt").value}</div>`;
-            chatBox.innerHTML += `<div class="message ai-message">${text}</div>`;
 
-            // Scroll to the bottom
+            // Adiciona a mensagem do usuário
+            chatBox.innerHTML += `<div class="message user-message clearfix">${document.getElementById("prompt").value}</div>`;
+
+            // Adiciona a resposta da IA
+            chatBox.innerHTML += `<div class="message ai-message clearfix">${text}</div>`;
+
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // Clear the input
+            // Limpa o campo de entrada
             document.getElementById("prompt").value = "";
+            enviarMensagem();
         }
     </script>
+
+
 </body>
 
-</html> 
-
-
-
+</html>

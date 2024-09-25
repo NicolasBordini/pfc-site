@@ -1,25 +1,83 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Teenage</title>
-</head>
+    <style>
+        /* Estilos para o contêiner principal da navbar */
+        .navbar-container {
+            display: flex;
+            justify-content: center;
+            position: fixed; /* Fixa a navbar no topo */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
+            margin: 0 20px; /* Espaçamento lateral para a navbar */
+            padding: 10px 0; /* Espaçamento interno para a navbar */
+        }
 
+        /* Estilos para a navbar */
+        #menu {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            width: 100%; /* Ocupa 100% da largura do contêiner */
+            max-width: 1256px; /* Largura máxima para a navbar */
+        }
+
+        /* Estilos para o logotipo e texto */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            width: 100px; /* Ajuste conforme necessário */
+            height: auto;
+            margin-right: 5px; /* Espaço entre a imagem e o texto */
+        }
+
+        /* Estilos para os itens da navbar */
+        #menu li {
+            list-style-type: none;
+            display: inline;
+            margin-right: 15px;
+        }
+ /* Adiciona um espaçamento ao conteúdo para não ficar atrás da navbar fixa */
+ .spaco-container {
+            margin-top: 80px; /* Ajuste conforme a altura da navbar + espaçamento desejado */
+        }
+
+        .spaco-content {
+            padding: 20px; /* Adiciona algum espaçamento interno ao conteúdo */
+        }
+        /* Adiciona um espaçamento ao conteúdo para não ficar atrás da navbar fixa */
+        body {
+           
+        }
+    </style>
+</head>
 <body>
-    <ul id="menu">
-        <div>
-            <h1>Teenage Relatos</h1>
-        </div>
-        <div>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="relatos.html">Relatos</a></li>
-            <li><a href="ia.html">IA</a></li>
-            <li><a href="sobre.html">Sobre Nós</a></li>
-        </div>
-    </ul>
+    <div class="navbar-container">
+        <ul id="menu">
+            <div class="logo-container">
+                <!-- Adicionando o logotipo ao lado esquerdo do texto -->
+                <img src="teenagelogo.png" alt="Teenage Emotions Logo">
+                <h1>Teenage Emotions</h1>
+            </div>
+            <div>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="relatos.html">Relatos</a></li>
+                <li><a href="ia.html">IA</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+            </div>
+        </ul>
+    </div>
+</body>
+</html>
 
     <div class="spaco-container">
         <div class="spaco-content">
