@@ -7,12 +7,20 @@ const app = express();
 const port = 3000;
 app.use(express.static('public')); // Serve static files from the 'public' directory
   
-app.use(cors()); // Enable CORS for all routes   
+// Permitir requisições de múltiplas origens
+const allowedOrigins = ['http://127.0.0.1:5500', 'http://localhost:5500'];
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, origin);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+}));
+
 const uri = "mongodb+srv://nicolassiribolabordini:OzV8YeG6z813dPWs@cluster0.btxom.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-
-app.use(cors({ origin: 'http://localhost:8080'   
-}));
 
 const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
@@ -37,9 +45,9 @@ connectMongo();
 app.post('/historico', async (req, res) => {
   const { usuario, mensagem, timestamp = new Date() } = req.body; // Include timestamp by default
 
-  if (!usuario || !mensagem) {
-    return res.status(400).json({ message: 'Usuário e mensagem são obrigatórios' });
-  }
+  // if (!usuario || !mensagem) {
+  //   return res.status(400).json({ message: 'Usuário e mensagem são obrigatórios' });
+  // }
 
   try {
     const db = client.db("chatbot"); // Replace with your actual database name
