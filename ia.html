@@ -192,6 +192,23 @@
 
     <!-- Conteúdo do chatbot -->
     <main>
+    <!-- Aviso de seleção de avatar -->
+<div id="alert-message" class="alert">
+    <div class="avatar-selection-container">
+        <h2>Escolha seu Avatar</h2>
+        <p>Por favor, selecione a foto que você mais gosta:</p>
+        <div class="avatar-grid">
+            <img src="anna.png" alt="Avatar Anna" class="avatar" onclick="selectAvatar('avatar1.png')">
+            <img src="nic.png" alt="Avatar Nic" class="avatar" onclick="selectAvatar('avatar2.png')">
+            <img src="nik.png" alt="Avatar Nik" class="avatar" onclick="selectAvatar('avatar3.png')">
+        </div>
+        <div id="selected-avatar" class="selected-avatar"></div>
+    </div>
+</div>
+
+
+            </div>
+        </div>
         <div class="chat-container">
             <div id="chat-box" class="chat-box"></div>
             <div class="typing-indicator" id="typing">Digitando...</div>
@@ -344,6 +361,36 @@
                 });
         }
     </script>
+ 
+<script>
+    function selectAvatar(avatarSrc) {
+    const selectedAvatarDiv = document.getElementById('selected-avatar');
+    selectedAvatarDiv.innerHTML = `Você selecionou o seu avatar <br><button id="botao" onclick="closeAlert()">Continuar</button>`;
+}
+
+    function mostrarBotao(botao) {
+        const selectedBotao = document.getElementById("botao")
+        selectedBotao.innerHTML = `${botao}`
+    }
+
+
+//alerta do aviso
+function showAlert() {
+    const alertMessage = document.getElementById('alert-message');
+    alertMessage.classList.remove('hidden');
+}
+
+function closeAlert() {
+    const alertMessage = document.getElementById('alert-message');
+    alertMessage.classList.add('hidden');
+}
+
+// Exemplo de como chamar a função showAlert
+// Você pode chamar isso quando necessário, como quando a página carrega ou quando um botão é clicado
+window.onload = function() {
+    showAlert(); // Mostra o aviso quando a página é carregada
+};
+</script>
 
 </body>
 

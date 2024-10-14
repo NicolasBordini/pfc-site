@@ -147,7 +147,7 @@ main {
 textarea {
   width: 100%;
   padding: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 10px;
   box-sizing: border-box;
   resize: none;
@@ -155,17 +155,24 @@ textarea {
 }
 
 button {
-  padding: 15px;
+  padding: 15px 30px;
   border: none;
-  border-radius: 10px;
-  background-color: #522699;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #522699, #b83af3);
   color: white;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background-color: #522699c0;
+  background: linear-gradient(45deg, #6633cc, #c34ef7);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
 }
 
 .message {
@@ -184,4 +191,138 @@ button:hover {
 .ai-message {
   background-color: #f1f0f0;
   align-self: flex-start;
+}
+
+/*----------------------------------------------*/
+
+/* Estilos melhorados para o aviso de seleção de avatar */
+.avatar-selection-container {
+  margin: 20px auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff; /* Fundo branco sólido */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mais discreta */
+  max-width: 400px;
+}
+
+.avatar-selection-container h2 {
+  font-size: 24px;
+  color: #4a148c;
+  margin-bottom: 10px;
+}
+
+.avatar-selection-container p {
+  font-size: 16px;
+  color: #555;
+}
+
+.avatar-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.selected-avatar {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #4a148c;
+  font-weight: bold;
+}
+
+.continue-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #663399;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s;
+}
+
+.continue-button:hover {
+  background-color: #5a2e88;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.alert {
+  color: #4a148c;
+  padding: 30px;
+  border-radius: 15px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Fixa a posição na tela */
+  top: 50%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta para o centro */
+ 
+  max-width: 500px; /* Largura máxima */
+  width: 90%; /* Largura responsiva */
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+.typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #004aad, #cb6ce6); /* Degradê de azul para roxo rosado */
+  color: #fff; /* Cor do texto */
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra mais profunda */
+  position: relative;
+  overflow: hidden;
+}
+
+.typing-indicator::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-right: 10px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-5px); /* Animação de "pulo" */
+  }
+}
+
+@keyframes typing {
+  0%, 100% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0.5; /* Efeito de piscar */
+  }
 }
