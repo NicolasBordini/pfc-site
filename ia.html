@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <title>Teenage IA</title>
 
-    <!-- Importação para Google Generative AI -->
     <script type="importmap">
         {
             "imports": {
@@ -148,6 +147,26 @@
             display: block;
             clear: both;
         }
+
+        .typing-indicator {
+            font-style: italic;
+            color: #999;
+            display: none;
+            margin: 10px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -175,6 +194,7 @@
     <main>
         <div class="chat-container">
             <div id="chat-box" class="chat-box"></div>
+            <div class="typing-indicator" id="typing">Digitando...</div>
             <div class="input-area">
                 <textarea id="prompt" placeholder="Digite sua mensagem..." rows="3"></textarea>
                 <button id="send-button">Enviar</button>
@@ -183,16 +203,15 @@
     </main>
 
     <script type="module">
+        const history = [
+            {
+                role: "user",
+                parts: [
+                    { text: "Você é uma espécie de orientador, no qual conversa, dá conselhos e encaminha para um responsável medico psicólogo profissional caso a conversa tome um rumo perigoso. Caso aconteça alguma situação grave ou fale algo grave. você deve cortar o assunto imediatamente e solicitar a pessoa a ligar para o cvv ou algo mais crítico. Você não pode dar respostas com menos de 15 palavras. Caso aconteça, reenvie a mensagem. Sendo isso, atenda as pessoas de forma cuidadosa, cautelosa e paciente." },
+                ],
+            },
+        ];
 
-    const history = [
-                    {
-                        role: "user",
-                        parts: [
-                            { text: "Você é uma espécie de orientador, no qual conversa, dá conselhos e encaminha para um responsável medico psicólogo profissional caso a conversa tome um rumo perigoso. Caso aconteça alguma situação grave ou fale algo grave. você deve cortar o assunto imediatamente e solicitar a pessoa a ligar para o cvv ou algo mais crítico. Você não pode dar respostas com menos de 15 palavras. Caso aconteça, reenvie a mensagem. Sendo isso, atenda as pessoas de forma cuidadosa, cautelosa e paciente" },
-                        ],
-                    },
-                ];
-                
         import { GoogleGenerativeAI } from "@google/generative-ai";
 
         const API_KEY = "AIzaSyAZiRcKQnUxl8KmDmux1KUreqnjRD_10Ew";
@@ -200,75 +219,125 @@
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const generationConfig = {
-                temperature: 1,
-                topP: 0.95,
-                topK: 64,
-                maxOutputTokens: 8192,
-                responseMimeType: "text/plain",
-                };
+            temperature: 1,
+            topP: 0.95,
+            topK: 64,
+            maxOutputTokens: 8192,
+            responseMimeType: "text/plain",
+        };
 
         document.getElementById("send-button").addEventListener("click", run);
+        document.getElementById("prompt").addEventListener("keydown", function(event) {
+            if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault(); // Evita a quebra de linha
+                run();
+            }
+        });
+
+        // Função para simular o efeito de máquina de escrever
+        function typeWriter(element, text, callback) {
+            let index = 0;
+            const speed = 50; // A velocidade da digitação em milissegundos
+
+            function typing() {
+                if (index < text.length) {
+                    element.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typing, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            typing();
+        }
+
+        // Função para enviar a mensagem de apresentação
+        async function sendIntroMessage() {
+            const introMessage = "Olá! Eu sou sua assistente virtual. Sou uma espécie de orientadora, dou conselhos e sugestões, e posso te encaminhar para um responsável médico psicólogo profissional, caso necessário. Como posso ajudar você hoje?";
+            history.push({
+                role: "model",
+                parts: [{ text: introMessage }],
+            });
+
+            const chatBox = document.getElementById("chat-box");
+
+            // Adiciona a mensagem da IA com animação
+            const aiMessageDiv = document.createElement('div');
+            aiMessageDiv.className = "message ai-message clearfix fade-in";
+            chatBox.appendChild(aiMessageDiv); // Adiciona à caixa de chat
+
+            typeWriter(aiMessageDiv, introMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
 
         async function run() {
-            
-            
             const promptUsuario = document.getElementById("prompt").value;
 
-                    // Adiciona a mensagem do usuário ao histórico
+            // Adiciona a mensagem do usuário ao histórico
             history.push({
                 role: "user",
                 parts: [{ text: promptUsuario }],
             });
 
-            const chatSession = model.startChat({
-                generationConfig,
-                history, // Passa o histórico atualizado
-            });
-
-            const result = await chatSession.sendMessage(promptUsuario);
-            //const result = await model.generateContent(prompt);
-            const response = await result.response;
-            const text = await response.text();
-
             const chatBox = document.getElementById("chat-box");
 
-            // Adiciona a mensagem do usuário
-            chatBox.innerHTML += `<div class="message user-message clearfix">${document.getElementById("prompt").value}</div>`;
-
-            // Adiciona a resposta da IA
-            chatBox.innerHTML += `<div class="message ai-message clearfix">${text}</div>`;
-
+            // Adiciona a mensagem do usuário com animação
+            chatBox.innerHTML += `<div class="message user-message clearfix fade-in">${promptUsuario}</div>`;
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            
-            enviarMensagem();
+            // Mostra a mensagem "Digitando..."
+            const typingMessage = document.getElementById("typing");
+            typingMessage.style.display = 'block';
+
+            const chatSession = model.startChat({
+                generationConfig,
+                history,
+            });
+
+            // Simula um atraso para a resposta da IA
+            setTimeout(async () => {
+                const result = await chatSession.sendMessage(promptUsuario);
+                const response = await result.response;
+                const text = await response.text();
+
+                // Esconde a mensagem "Digitando..."
+                typingMessage.style.display = 'none';
+
+                // Cria um novo elemento para a mensagem da IA
+                const aiMessageDiv = document.createElement('div');
+                aiMessageDiv.className = "message ai-message clearfix fade-in";
+                chatBox.appendChild(aiMessageDiv); // Adiciona à caixa de chat
+
+                // Usa a função typeWriter para simular a digitação
+                typeWriter(aiMessageDiv, text);
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                // Limpa o campo de entrada
+                document.getElementById("prompt").value = "";
+            }, 1000); // Atraso de 1 segundo para simular a digitação
         }
 
+        // Chama a função para enviar a mensagem de apresentação quando a página é carregada
+        window.onload = sendIntroMessage;
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-
-    
         function enviarMensagem() {
             const mensagem = document.getElementById('prompt').value;
 
             // Limpa o campo de entrada
             document.getElementById("prompt").value = "";
 
-            // Crie um objeto com os dados a serem enviados
             const dados = {
-                usuario: 'Usuário', // Substitua por um nome de usuário dinâmico se precisar
+                usuario: 'Usuário',
                 mensagem: mensagem
             };
 
-
-            // Utilize o axios para enviar a requisição POST
             axios.post('http://localhost:3000/historico', dados)
                 .then(response => {
                     console.log('Resposta do servidor:', response.data);
-
-                    // Aqui você pode adicionar um feedback ao usuário, como uma mensagem de sucesso ou erro
                 })
                 .catch(error => {
                     console.error('Erro ao enviar mensagem:', error);
