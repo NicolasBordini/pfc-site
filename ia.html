@@ -290,6 +290,7 @@
         async function run() {
             const promptUsuario = document.getElementById("prompt").value;
 
+            enviarMensagem(promptUsuario);
             // Adiciona a mensagem do usuário ao histórico
             history.push({
                 role: "user",
@@ -341,11 +342,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        function enviarMensagem() {
-            const mensagem = document.getElementById('prompt').value;
-
-            // Limpa o campo de entrada
-            document.getElementById("prompt").value = "";
+        function enviarMensagem(mensagem) {
 
             const dados = {
                 usuario: 'Usuário',
