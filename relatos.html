@@ -1,70 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Teenage</title>
+    <title>Teenage Emotions</title>
     <style>
-        /* Estilos para o contêiner principal da navbar */
+        /* Navbar original */
         .navbar-container {
             display: flex;
             justify-content: center;
-            position: fixed; /* Fixa a navbar no topo */
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000; /* Garante que a navbar fique acima de outros elementos */
-            margin: 0 20px; /* Espaçamento lateral para a navbar */
-            padding: 10px 0; /* Espaçamento interno para a navbar */
+            z-index: 1000;
+            margin: 0 20px;
+            padding: 10px 0;
         }
 
-        /* Estilos para a navbar */
         #menu {
             display: flex;
             align-items: center;
             padding: 0;
-            width: 100%; /* Ocupa 100% da largura do contêiner */
-            max-width: 1256px; /* Largura máxima para a navbar */
+            width: 100%;
+            max-width: 1256px;
         }
 
-        /* Estilos para o logotipo e texto */
         .logo-container {
             display: flex;
             align-items: center;
         }
 
         .logo-container img {
-            width: 100px; /* Ajuste conforme necessário */
+            width: 100px;
             height: auto;
-            margin-right: 5px; /* Espaço entre a imagem e o texto */
+            margin-right: 5px;
         }
 
-        /* Estilos para os itens da navbar */
         #menu li {
             list-style-type: none;
             display: inline;
             margin-right: 15px;
         }
- /* Adiciona um espaçamento ao conteúdo para não ficar atrás da navbar fixa */
- .spaco-container {
-            margin-top: 80px; /* Ajuste conforme a altura da navbar + espaçamento desejado */
+
+        /* Contêiner principal dos relatos */
+        .spaco-container {
+            margin-top: 120px; /* Espaço extra para separar a navbar dos relatos */
         }
 
-        .spaco-content {
-            padding: 20px; /* Adiciona algum espaçamento interno ao conteúdo */
+        /* Estilos dos relatos */
+        .content-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
         }
-        /* Adiciona um espaçamento ao conteúdo para não ficar atrás da navbar fixa */
-        body {
-           
+
+        .content-box {
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffffa9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .content-box h1 {
+            font-size: 1.25em;
+            margin-bottom: 10px;
+        }
+
+        .content-box p {
+            font-size: 0.95em;
+            line-height: 1.4;
+            max-height: 80px;
+            overflow: hidden;
+        }
+
+        .read-more-btn {
+            color: #0066cc;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            text-align: right;
+            font-size: 0.9em;
+        }
+
+        /* Estilos da modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .modal-content {
+            background-color: #ccccec;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .content-box {
+                width: 90%;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <div class="navbar-container">
         <ul id="menu">
             <div class="logo-container">
-                <!-- Adicionando o logotipo ao lado esquerdo do texto -->
                 <img src="teenagelogo.png" alt="Teenage Emotions Logo">
                 <h1>Teenage Emotions</h1>
             </div>
@@ -76,26 +149,96 @@
             </div>
         </ul>
     </div>
-</body>
-</html>
 
+    <!-- Relatos Content -->
     <div class="spaco-container">
-        <div class="spaco-content">
-            <h1>Relato 1</h1>
-            <p class="espaco">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s...</p>
-        </div>
-        <div class="spaco-content">
-            <h1>Relato 2</h1>
-            <p class="espaco">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s...</p>
-        </div>
-        <div class="spaco-content">
-            <h1>Relato 3</h1>
-            <p class="espaco">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s...</p>
+        <div class="content-container">
+            <div class="content-box">
+                <h1>Relato 1</h1>
+                <p class="text-content">Ex> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent felis lectus, ornare vitae tincidunt hendrerit, euismod nec metus. Vivamus eu egestas ex. Ut congue quam est, ut tristique nisl congue et. Nullam cursus laoreet tortor. Suspendisse iaculis in tellus vitae ornare. Duis ornare, magna non accumsan condimentum, elit lorem congue dui, at ultrices quam leo sit amet velit. In cursus tincidunt malesuada. In hac habitasse platea dictumst. Maecenas tincidunt eu erat quis tempor.
+
+                    Nunc sit amet orci bibendum, tincidunt eros vel, aliquam erat. Nulla congue finibus faucibus. Donec rutrum, mauris at tincidunt blandit, urna erat finibus ante, quis bibendum ex massa eu nibh. Suspendisse vel nulla porta, tincidunt dolor a, iaculis nulla. Proin eu egestas arcu. Mauris vel metus non elit dignissim placerat. Maecenas et maximus mi, vel dapibus lectus.
+                    
+                    </p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 2</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 3</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 4</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 5</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 6</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 7</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 8</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
+            <div class="content-box">
+                <h1>Relato 9</h1>
+                <p class="text-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+                <span class="read-more-btn" onclick="openModal(this)">Ler mais</span>
+            </div>
         </div>
     </div>
-</body>
 
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <h1 id="modalTitle"></h1>
+            <p id="modalText"></p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function openModal(button) {
+            const contentBox = button.parentElement;
+            const title = contentBox.querySelector("h1").textContent;
+            const text = contentBox.querySelector("p").textContent;
+
+            document.getElementById("modalTitle").textContent = title;
+            document.getElementById("modalText").textContent = text;
+
+            const modal = document.getElementById("modal");
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Fecha a modal ao clicar fora dela
+        window.onclick = function(event) {
+            const modal = document.getElementById("modal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
 </html>
