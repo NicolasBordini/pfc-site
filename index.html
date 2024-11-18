@@ -62,7 +62,6 @@
     <div class="navbar-container">
         <ul id="menu">
             <div class="logo-container">
-                <!-- Adicionando o logotipo ao lado esquerdo do texto -->
                 <img src="teenagelogo.png" alt="Teenage Emotions Logo">
                 <h1>Teenage Emotions</h1>
             </div>
@@ -78,8 +77,22 @@
     <div id="teenage-emotions" class="spaco-container">
         <div class="spaco-content">
             <h1 style="text-align: center;">Saúde Mental: O que é?</h1>
-            <p class="espaco">A saúde mental é um fenômeno complexo e multifatorial, refletido na maneira como uma pessoa vivencia sua vida, reconhece suas potencialidades e lida com desafios e emoções. Ser mentalmente saudável envolve conhecer limites e fragilidades, buscar ajuda quando necessário e manter relações significativas e engajamento social. A saúde mental é dinâmica e não linear, pois varia conforme fatores genéticos, psicológicos, biológicos, ambientais e sociais, sendo impactada por condições de vida, trabalho, exclusão e desigualdade. Assim, a saúde mental não pode ser vista de forma isolada, pois depende das especificidades dos contextos que afetam cada indivíduo de forma singular e suas interações na comunidade (TRENTIN, Amanda, 2024).</p>
-        </div>
+            <p class="espaco">"A saúde mental é um fenômeno complexo e multifatorial, refletido na maneira como uma pessoa vivencia sua vida, reconhece suas potencialidades e lida com desafios e emoções. Ser mentalmente saudável envolve conhecer limites e fragilidades, buscar ajuda quando necessário e manter relações significativas e engajamento social. A saúde mental é dinâmica e não linear, pois varia conforme fatores genéticos, psicológicos, biológicos, ambientais e sociais, sendo impactada por condições de vida, trabalho, exclusão e desigualdade. Assim, a saúde mental não pode ser vista de forma isolada, pois depende das especificidades dos contextos que afetam cada indivíduo de forma singular e suas interações na comunidade" 
+                <a href="#" id="ref-link" style="color: purple" onclick="toggleReference()"> (TRENTIN, Amanda, 2024)</a>.
+            </p>
+        <br> <br>
+         <div id="reference-text" class="hidden">
+           <h2>Referências Bibliográficas</h2>
+        <p class="espaco">TRENTIN, Amanda. <i>Criação de um website com integração de inteligência artificial para auxiliar na autoaceitação do adolescente estudante do ensino médio.</i> Artigo Projeto Integrador III, IFPR, 2024.</p>
+        </div>  </div> 
     </div>
+    <script>
+        function toggleReference() {
+            const referenceText = document.getElementById("reference-text");
+            referenceText.classList.toggle("hidden");
+        }
+    </script>
+
+    
 </body>
 </html>
