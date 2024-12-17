@@ -17,6 +17,8 @@
             z-index: 1000;
             margin: 0 20px;
             padding: 10px 0;
+         
+           
         }
 
         /* Estilos para a navbar */
@@ -37,7 +39,12 @@
         .logo-container img {
             width: 100px;
             height: auto;
-            margin-right: 5px;
+            margin-right: 10px;
+        }
+
+        .logo-container h1 {
+            font-size: 24px;
+            color: #333;
         }
 
         /* Estilos para os itens da navbar */
@@ -47,53 +54,107 @@
             margin-right: 15px;
         }
 
+        #menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+
         /* Adiciona um espaçamento ao conteúdo para não ficar atrás da navbar fixa */
         body {
             margin-top: 70px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
         }
 
         /* Estilo para a seção de autores */
         .authors-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+            gap: 20px; /* Espaçamento entre os itens */
             margin: 40px 20px;
         }
 
+        /* Estilo para cada autor */
         .author {
             text-align: center;
-            width: 30%;
-            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #ffffffb7;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .author:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .author img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent; /* Tornando o border transparente */
+    background-image: linear-gradient(45deg, #515bd4, #b134af, #dd2a7b); /* Degradê mais suave */
+    background-size: 200% 200%; /* Aumenta o tamanho do degradê para suavizar a transição */
+    animation: gradientAnimation 3s ease infinite; /* Animação para o degradê fluir */
+    background-clip: border-box; /* Faz o degradê se aplicar no borde */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 
         .author h3 {
-            margin-top: 10px;
+            margin-top: 15px;
+            font-size: 18px;
+            color: #333;
         }
 
         .author p {
             font-size: 14px;
-            color: #000000;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
         }
 
         .instagram-link {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-}
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
 
-.instagram-link img {
-    width: 20px; /* Tamanho pequeno da imagem */
-    height: 20px;
-    margin-left: 10px; /* Espaço entre o ícone e o texto */
-}
+        .instagram-link img {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 768px) {
+            .authors-section {
+                grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas menores */
+            }
+        }
+
+        /* Responsividade para telas muito pequenas */
+        @media (max-width: 480px) {
+            .authors-section {
+                grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
+            }
+        }
 
     </style>
 </head>
@@ -121,7 +182,7 @@
             <img src="foto-anna.jpg" alt="Foto de Anna Julia Lopes">
             <h3>
                 <a href="https://www.instagram.com/anna.julia_015?igsh=MTg2dmZ2NG95Z3Z4dg==" class="instagram-link">
-                 Anna Julia Lopes   <img src="insta.jpg" alt="Instagram"> 
+                 Anna Julia Lopes <img src="insta.jpg" alt="Instagram">
                 </a>
             </h3>
             <p>Meu nome é Anna Julia, tenho 18 anos e estudo no IFPR, no qual me formo no ano de 2024. Eu faço parte de um projeto incrível junto com meus melhores amigos, e nossa meta é ajudar muitos adolescentes, assim como nós. Espero que possamos levar esse projeto adiante e fazer a diferença na vida de muita gente!</p>
@@ -132,11 +193,10 @@
             <img src="foto-nicolas.jpg" alt="Foto de Nicolas Bordini">
             <h3>
                 <a href="https://www.instagram.com/nicolas.bordinii?igsh=MXdxOGx3NThmeTN2bA==" class="instagram-link">
-                  Nicolas Bordini   <img src="insta.jpg" alt="Instagram">
+                  Nicolas Bordini <img src="insta.jpg" alt="Instagram">
                 </a>
             </h3>
-            <p>Olá, meu nome é Nicolas, tenho 17 anos, sou estudante do IFPR e estou prestes a me formar este ano. 
-                Este projeto foi feito junto com minhas amigas, ele foi executado com muito amor e dedicação para proporcionar uma experiência melhor para os adolescentes da nossa instituição. Nosso objetivo é deixar um legado positivo no IFPR, pensando no bem-estar dos estudantes que virão após nós.</p>
+            <p>Olá, meu nome é Nicolas, tenho 17 anos, sou estudante do IFPR e estou prestes a me formar este ano. Este projeto foi feito junto com minhas amigas, ele foi executado com muito amor e dedicação para proporcionar uma experiência melhor para os adolescentes da nossa instituição. Nosso objetivo é deixar um legado positivo no IFPR, pensando no bem-estar dos estudantes que virão após nós.</p>
         </div>
 
         <!-- Nikoli Azevedo -->
@@ -144,7 +204,7 @@
             <img src="foto-nikoli.jpeg" alt="Foto de Nikoli Azevedo">
             <h3>
                 <a href="https://www.instagram.com/nikoli_azevedo?igsh=MW4xM29qY2s0emZqaQ==" class="instagram-link">
-                  Nikoli Azevedo  <img src="insta.jpg" alt="Instagram"> 
+                  Nikoli Azevedo <img src="insta.jpg" alt="Instagram">
                 </a>
             </h3>
             <p>Meu nome é Nikoli da Silva Azevedo, tenho 18 anos, nasci no dia 23 de maio de 2006 em Curitiba. Morei lá por 12 anos e vim para Assis Chateaubriand no dia 7 de dezembro de 2019. Em 2022, entrei no Instituto Federal. Hoje, faço parte deste projeto junto com meus amigos e espero que o nosso projeto ajude os adolescentes.</p>
@@ -155,7 +215,7 @@
             <img src="foto-novo1.jpg" alt="Foto de Michelli Galli">
             <h3>
                 <a href="https://www.instagram.com/michelli.galli?igsh=NG5ncHc3Z24zYnMw" class="instagram-link">
-                  Michelli Galli  <img src="insta.jpg" alt="Instagram"> 
+                  Michelli Galli <img src="insta.jpg" alt="Instagram">
                 </a>
             </h3>
             <p>Olá! Sou Michelli Cristina Galli, docente de Língua Portuguesa e Língua Espanhola no Instituto Federal do Paraná - Câmpus Assis Chateaubriand. Sou Mestre em Letras pela Universidade Estadual do Oeste do Paraná (UNIOESTE) e Doutora em Estudos da Linguagem pela Universidade Estadual de Londrina (UEL). Este projeto me encanta por sua essência: a Saúde Mental do adolescente, público ao qual leciono e é a minha paixão. Aqui temos uma valiosíssima ferramenta que une cuidado com Saúde Mental e Tecnologia, o seu bom uso pelos estudantes do IFPR - Câmpus Assis Chateaubriand impactará positivamente nas atividades cotidianas, dentre elas, a escolar.</p>
@@ -166,7 +226,7 @@
             <img src="WhatsApp Image 2024-11-30 at 19.15.46.jpeg" alt="Foto de Amanda Keler">
             <h3>
                 <a href="https://www.instagram.com/psi.amandaktrentin?igsh=aHViN3Nxa24wbGZs" class="instagram-link">
-                     Amanda Keler<img src="insta.jpg" alt="Instagram">
+                     Amanda Keler <img src="insta.jpg" alt="Instagram">
                 </a>
             </h3>
             <p>Meu nome é Amanda Keler Trentin, sou psicóloga clínica registrada no CRP 08/41557 e pós-graduanda em Avaliação Psicológica. Além disso, sou egressa do curso técnico em Informática Integrado ao Ensino Médio pelo IFPR Campus Assis Chateaubriand. Atualmente, sou co-orientadora do projeto Teenage Emotions, colaborando com aspectos teóricos relacionados à psicologia e saúde mental. A adolescência é uma fase de intensas transformações e descobertas, e acredito que falar sobre saúde mental no ambiente escolar é essencial para promover o autoconhecimento, o equilíbrio emocional e o desenvolvimento de habilidades que auxiliem os jovens a enfrentar adversidades. Com iniciativas como o Teenage Emotions, acredito que podemos construir uma sociedade mais empática, acolhedora e consciente sobre a importância do cuidado com a mente.</p>
